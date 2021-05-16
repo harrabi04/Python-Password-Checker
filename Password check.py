@@ -9,16 +9,21 @@ input1=Entry(textvariable=pwd1).place(x=200,y=80, anchor=CENTER)
 Check= Button(text="Check" ,width=8, height=2, bd=5).place(x=200,y=180, anchor=CENTER)
 generate=Button(text="Generate",width=8, height=2, bd=5).place(x=200, y=250, anchor=CENTER)
 window.mainloop()
+Maj=False
+Space=False
+Special=False
+num=False
+def printonwindw()
+    if Maj==False:
+        print("Password doesnt contain Maj".center(50,"*"))
+    if Space==False:
+        print("Password doesnt contain Space".center(50,"*"))
 
 def check(pwd):
     D={"#":5,'"':5,"'":5,"%":4,"&":4,"$":4,"!":3,"(":3,")":3,"@":3,"+":2,"*":2,"-":2,".":2,"=":2}    
     while len(pwd) < 8:
         print("Enter a password with more than 8 character".center(50,"*"))
         pwd = input("Please enter your password to check: ")
-    Maj=False
-    Space=False
-    Special=False
-    num=False
     w=0
     """Check for conditions"""
     for i in pwd:
@@ -26,15 +31,11 @@ def check(pwd):
             Maj=True
             w += 1
             break
-    if Maj==False:
-        print("Password doesnt contain Maj".center(50,"*"))
     for i in pwd:
         if i==' ':
             Space=True
             w += + 1
             break
-    if Space==False:
-        print("Password doesnt contain Space".center(50,"*"))
     for i in pwd:
         if i.isnumeric():
             num=True
@@ -58,5 +59,3 @@ def check(pwd):
         print("medium password".center(30,"/"))
     if P >= 1.4 * len(pwd):
         print("Strong password".center(30,"/"))
-    print("wanna check again ?")
-        
