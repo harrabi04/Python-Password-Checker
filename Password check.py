@@ -1,29 +1,16 @@
-'''Python Password Checker'''
+'''Python Password Checker BY MOATAZ HARRABI (https://github.com/harrabi04)'''
 from tkinter import *
-pwd1=''
+from tkinter import messagebox
 window= Tk()
-window.geometry("400x300")
-window.title("Password Checker/generator")
-label=Label(text='Enter your password to check', width=40, height=10, font=20 ).place(x=200,y=40, anchor=CENTER)
-input1=Entry(textvariable=pwd1).place(x=200,y=80, anchor=CENTER)
-Check= Button(text="Check" ,width=8, height=2, bd=5).place(x=200,y=180, anchor=CENTER)
-generate=Button(text="Generate",width=8, height=2, bd=5).place(x=200, y=250, anchor=CENTER)
-window.mainloop()
-Maj=False
-Space=False
-Special=False
-num=False
-def printonwindw()
-    if Maj==False:
-        print("Password doesnt contain Maj".center(50,"*"))
-    if Space==False:
-        print("Password doesnt contain Space".center(50,"*"))
-
-def check(pwd):
+def check(): 
+    Maj=False
+    Space=False
+    Special=False
+    num=False
+    global pwd 
+    pwd = entry.get()
+    pwd=str(pwd)
     D={"#":5,'"':5,"'":5,"%":4,"&":4,"$":4,"!":3,"(":3,")":3,"@":3,"+":2,"*":2,"-":2,".":2,"=":2}    
-    while len(pwd) < 8:
-        print("Enter a password with more than 8 character".center(50,"*"))
-        pwd = input("Please enter your password to check: ")
     w=0
     """Check for conditions"""
     for i in pwd:
@@ -41,21 +28,39 @@ def check(pwd):
             num=True
             w+=1
             break
-    if num == False:
-        print("Password doesnt contain numbers".center(50,"*"))
     for i in pwd:
         for j in D:
             if i==j:
              w=w+D[j]
              Special=True
-    if Special == False:
-        print("Password doesnt contain special char".center(50,"*"))
-        print("Special character are: # \" ' % & $ ! ( ) @ + * - . = ")
-
     P=len(pwd)+w
     if P == len(pwd) and P :
-        print("weak password".center(30,"/"))
-    if P >= 1.1*len(pwd) and P < 1.4 * len(pwd):
-        print("medium password".center(30,"/"))
-    if P >= 1.4 * len(pwd):
-        print("Strong password".center(30,"/"))
+        l= Label(text="Weak password", font=("Arial", 25)).place(x=200,y=120, anchor=CENTER)
+    if P >= 1.1*len(pwd) and P < 1.3 * len(pwd):
+        l= Label(text="Medium password", font=("Arial", 25)).place(x=200,y=120, anchor=CENTER)
+    if P >= 1.3 * len(pwd):
+        l= Label(text="Strong password", font=("Arial", 25)).place(x=200,y=120, anchor=CENTER)
+    if Maj==False:
+        messagebox.showinfo("No Maj", "Password doesnt contain UpperCase")
+        return
+    if num == False:
+        messagebox.showinfo("No Numbers", "Password doesnt contain numbers")
+        return
+    if Space==False:
+        messagebox.showinfo("No Space", "Password doesnt contain Space")
+        return
+    if len(pwd) < 8:
+        messagebox.showinfo("Short password", "Enter a password with more than 8 character")
+        return
+    if Special == False:
+        messagebox.showinfo("No Special","Password doesnt contain special char \n Special character are: # \" ' % & $ ! ( ) @ + * - . = ")  
+    
+entry= StringVar()
+window.geometry("400x300")
+window.title("Password Checker")
+label=Label(text='Enter your password to check', width=40, height=10, font=20 ).place(x=200,y=40, anchor=CENTER)
+pwdnput=Entry(textvariable=entry, width=35).place(x=200,y=80, anchor=CENTER)
+Check= Button(text="Check" ,width=8, height=2, bd=5, command=check).place(x=200,y=180, anchor=CENTER)
+window.mainloop()
+
+    
