@@ -34,12 +34,12 @@ def check():
              w=w+D[j]
              Special=True
     P=len(pwd)+w
-    if P == len(pwd) and P :
+    if P == len(pwd) or pwd.isnumeric() :
         l= Label(text="Weak password", font=("Arial", 25)).place(x=200,y=120, anchor=CENTER)
-    if P >= 1.1*len(pwd) and P < 1.3 * len(pwd):
+    elif P >= 1.1*len(pwd) and P < 1.3 * len(pwd):
         l= Label(text="Medium password", font=("Arial", 25)).place(x=200,y=120, anchor=CENTER)
-    if P >= 1.3 * len(pwd):
-        l= Label(text="Strong password", font=("Arial", 25)).place(x=200,y=120, anchor=CENTER)
+    elif P >= 1.3 * len(pwd):
+        l= Label(text="Strong  password", font=("Arial", 25)).place(x=200,y=120, anchor=CENTER)
     if Maj==False:
         messagebox.showinfo("No Maj", "Password doesnt contain UpperCase")
         return
@@ -56,11 +56,10 @@ def check():
         messagebox.showinfo("No Special","Password doesnt contain special char \n Special character are: # \" ' % & $ ! ( ) @ + * - . = ")  
     
 entry= StringVar()
+window.iconbitmap("Lock.ico")
 window.geometry("400x300")
 window.title("Password Checker")
 label=Label(text='Enter your password to check', width=40, height=10, font=20 ).place(x=200,y=40, anchor=CENTER)
 pwdnput=Entry(textvariable=entry, width=35).place(x=200,y=80, anchor=CENTER)
 Check= Button(text="Check" ,width=8, height=2, bd=5, command=check).place(x=200,y=180, anchor=CENTER)
 window.mainloop()
-
-    
