@@ -56,7 +56,6 @@ def check():
         messagebox.showinfo("No Special","Password doesnt contain special char \n Special character are: # \" ' % & $ ! ( ) @ + * - . = ")  
     
 entry= StringVar()
-window.iconbitmap("Lock.ico")
 window.geometry("400x300")
 window.title("Password Checker")
 label=Label(text='Enter your password to check', width=40, height=10, font=20 ).place(x=200,y=40, anchor=CENTER)
