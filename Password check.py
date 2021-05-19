@@ -55,7 +55,7 @@ def check():
     if Special == False:
         messagebox.showinfo("No Special","Password doesnt contain special char \n Special character are: # \" ' % & $ ! ( ) @ + * - . = ")  
     
-entry= StringVar()
+entry = StringVar()
 window.iconbitmap("Lock.ico")
 window.geometry("400x300")
 window.title("Password Checker")
